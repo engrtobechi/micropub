@@ -1,0 +1,34 @@
+{% extends "base.html "%}
+
+{% block body %}
+    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3 text-center">
+        <div class="container-fluid py-4">
+            <h4 class="display-6 fw-bold mb-4">Sign Up</h4>
+            <form method="POST" action="">
+                {% if form.errors %}                
+                    {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                        {% for error in field_errors %}
+                            <div class="text-start alert alert-danger">{{ form[field_name].label }}: {{ error }}</div>
+                        {% endfor %}
+                    {% endfor %}                
+                {% endif %}
+                <div class="form-floating mb-3">
+                    {{form.name(class="form-control")}} {{form.name.label}}
+                </div>
+                <div class="form-floating mb-3">
+                    {{form.username(class="form-control")}} {{form.username.label}}
+                </div>
+                <div class="form-floating mb-3">
+                    {{form.email(class="form-control")}} {{form.email.label}}
+                </div>
+                <div class="form-floating mb-3">
+                    {{form.password(class="form-control")}} {{form.password.label}}
+                </div>
+                <div class="form-floating mb-3">
+                    {{form.confirm(class="form-control")}} {{form.confirm.label}}
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+            </form>
+        </div> 
+    </div> 
+{% endblock %}

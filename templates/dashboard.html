@@ -1,0 +1,36 @@
+{% extends "base.html "%}
+
+{% block body %}
+    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3 text-center">
+        <div class="container-fluid py-4">
+            <h3 class="display-5 fw-bold mb-4">Dashboard</h3>
+            <p class="fs-4">Welcome to your dashboard, <strong>{{session.username}}</strong>.</p>
+            <a href="/write_article/" class="btn btn-primary btn-lg" type="button">Write an Article</a>
+        </div>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Date Published</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.create_date }}</td>
+                    <td class="text-end"><a href="/edit_article/{{article.id}}" class="btn btn-outline-primary">Edit</a></td>
+                    <td class="text-start">
+
+                        <form action="{{url_for('delete_article', id=article.id)}}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                    
+                    </td>
+                </tr>
+            {% endfor %}
+        </table> 
+    </div> 
+{% endblock %}

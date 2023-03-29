@@ -1,0 +1,13 @@
+{% extends "base.html "%}
+
+{% block body %}
+    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3 text-start">
+        <div class="container-fluid py-4">
+            <h3>{{article.title}}</h3>
+            <small>Written by {{article.author}} on {{article.create_date}}</small>
+            <div class="mt-5 lead ">
+                {{article.body | safe}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

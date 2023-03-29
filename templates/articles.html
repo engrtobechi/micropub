@@ -1,0 +1,23 @@
+{% extends "base.html "%}
+
+{% block body %}
+    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-4">
+            <div class="row align-items-md-stretch">
+                {% for article in articles %}
+                    <div class="col-md-6 mb-5">
+                        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                            <h2>{{article.title}}</h2>
+                            {% if article.body|length > 50 %}
+                                <p>{{ article.body[0:100] | safe | striptags }}...</p>
+                                <a class="btn btn-outline-secondary" type="button" href="/article/{{article.id}}/">Read More</a>
+                            {% else %}
+                                <p>{{article.body}}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>            
+        </div> 
+    </div> 
+{% endblock %}

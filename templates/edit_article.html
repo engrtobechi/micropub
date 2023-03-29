@@ -1,0 +1,31 @@
+{% extends "base.html "%}
+
+{% block body %}
+    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3 text-center">
+        <div class="container-fluid py-4">
+            <h4 class="display-6 fw-bold mb-4">Edit Article</h4>
+            <form method="POST" action="">
+                {% if form.errors %}                
+                    {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                        {% for error in field_errors %}
+                            <div class="text-start alert alert-danger">{{ form[field_name].label }}: {{ error }}</div>
+                        {% endfor %}
+                    {% endfor %}                
+                {% endif %}
+                <div class="form-floating mb-3">
+                    {{form.title(class="form-control")}} {{form.title.label}}
+                </div>
+                <div class="mb-3">
+                    {{form.body(class="form-control", rows="10", id="body")}}
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
+            </form>
+        </div> 
+    </div>
+    <script type="text/javascript" src="/static/tinymce/js/tinymce/tinymce.min.js"></script> 
+    <script type="text/javascript">
+        tinymce.init({
+          selector: '#body',
+        });
+    </script>
+{% endblock %}
